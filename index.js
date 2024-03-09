@@ -11,7 +11,7 @@ io.on("connection", (socket) => {
    socket.on("RoadTwo",() => {
      socket.join("wtech-002");
       let device = {
-  state: 'off', // 初始狀態
+  state: 'on', // 初始狀態
   toggle: function() { // 切換狀態的方法
     this.state = (this.state === 'off') ? 'on' : 'off';
     console.log('Device is now ' + this.state);
