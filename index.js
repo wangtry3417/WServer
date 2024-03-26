@@ -2,6 +2,9 @@ const { Server } = require("socket.io");
 
 const io = new Server(3000);
 
+var rooms = [];
+var usernames = [];
+
 io.on("connection", (socket) => {
    socket.emit("con","hello");
    socket.on("join", function(room, username){
