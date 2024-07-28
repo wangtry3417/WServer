@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WCloud Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1>Dashboard</h1>
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Home</a>
+                    <a href="#" class="list-group-item list-group-item-action">Files</a>
+                    <button class="list-group-item list-group-item-action" onclick="startServer()">Start Server</button>
+                    <button class="list-group-item list-group-item-action" onclick="stopServer()">Stop Server</button>
+                </div>
+            </div>
+            <div class="col-9">
+                <div id="content">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function startServer() {
+            $.ajax({
+                url: '/start',
+                type: 'POST',
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert('Error starting server: ' + error);
+                }
+            });
+        }
+
+        function stopServer() {
+            $.ajax({
+                url: '/stop',
+                type: 'POST',
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert('Error stopping server: ' + error);
+                }
+            });
+        }
+
+        function loadFiles() {
+            $('#content').load('/files');
+        }
+
+        $(document).ready(function() {
+            loadFiles();
+        });
+    </script>
+</body>
+</html>
