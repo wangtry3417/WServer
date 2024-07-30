@@ -1,2 +1,2 @@
 flask
-git+https://github.com/wangtry/WCloud.git
+git+https://github.com/wangtry3417/WCloud.git
