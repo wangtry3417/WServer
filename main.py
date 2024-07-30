@@ -1,4 +1,4 @@
-from flask import send_file,Flask,render_template,redirect
+from flask import send_file,Flask,render_template,redirect,send_from_directory
 from wcloud import createServer
 
 app = Flask(__name__)
@@ -16,6 +16,12 @@ def stop():
 def get_files():
   file_list = server.get_file_list()
   return render_template("files.html",files=file_list)
+
+@app.route("/download/<filename>")
+def download_file(filename):
+  if filename != None:
+    return send_from_directory("/uploaded_files",filename,as_attachment=True)
+  return "檔案名稱不能空值"
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port=5000)
