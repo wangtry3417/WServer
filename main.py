@@ -13,7 +13,7 @@ def create_server():
 def index():
   return render_template("index.html")
 
-@app.route("/stop")
+@app.route("/stop",methods=["GET","POST"])
 def stop():
   server.stop_container()
   return redirect("/")
